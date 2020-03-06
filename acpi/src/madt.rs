@@ -354,32 +354,32 @@ where
      */
     for entry in (*mapping).entries() {
         match entry {
-            MadtEntry::LocalApic(_) |
-            MadtEntry::IoApic(_) |
-            MadtEntry::InterruptSourceOverride(_) |
-            MadtEntry::NmiSource(_) |   // TODO: is this one used by more than one model?
-            MadtEntry::LocalApicNmi(_) |
-            MadtEntry::LocalApicAddressOverride(_) => {
+            MadtEntry::LocalApic(_)
+            | MadtEntry::IoApic(_)
+            | MadtEntry::InterruptSourceOverride(_)
+            | MadtEntry::NmiSource(_) // TODO: is this one used by more than one model?
+            | MadtEntry::LocalApicNmi(_)
+            | MadtEntry::LocalApicAddressOverride(_) => {
                 acpi.interrupt_model = Some(parse_apic_model(acpi, mapping)?);
                 break;
             }
 
-            MadtEntry::IoSapic(_) |
-            MadtEntry::LocalSapic(_) |
-            MadtEntry::PlatformInterruptSource(_) => {
+            MadtEntry::IoSapic(_)
+            | MadtEntry::LocalSapic(_)
+            | MadtEntry::PlatformInterruptSource(_) => {
                 unimplemented!();
             }
 
-            MadtEntry::LocalX2Apic(_) |
-            MadtEntry::X2ApicNmi(_) => {
+            MadtEntry::LocalX2Apic(_)
+            | MadtEntry::X2ApicNmi(_) => {
                 unimplemented!();
             }
 
-            MadtEntry::Gicc(_) |
-            MadtEntry::Gicd(_) |
-            MadtEntry::GicMsiFrame(_) |
-            MadtEntry::GicRedistributor(_) |
-            MadtEntry::GicInterruptTranslationService(_) => {
+            MadtEntry::Gicc(_)
+            | MadtEntry::Gicd(_)
+            | MadtEntry::GicMsiFrame(_)
+            | MadtEntry::GicRedistributor(_)
+            | MadtEntry::GicInterruptTranslationService(_) => {
                 unimplemented!();
             }
         }
